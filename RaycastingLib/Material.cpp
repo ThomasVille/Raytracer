@@ -2,10 +2,12 @@
 
 namespace RT
 {
-	Material::Material() : color(COLOR::BLACK)
+	Material::Material() : Material(COLOR::BLACK, 1.0f, 1.0f, 1.0f, 0.0f, 10.0f)
 	{
 	}
-	Material::Material(Color color) : color(color)
+	Material::Material(Color color, float ambientCoefficient, float diffuseCoefficient, float specularCoefficient, float reflectionCoefficient, float shininessCoefficient) :
+		color(color), ambientCoefficient(ambientCoefficient), diffuseCoefficient(diffuseCoefficient), specularCoefficient(specularCoefficient), reflectionCoefficient(reflectionCoefficient),
+		shininessCoefficient(shininessCoefficient)
 	{
 	}
 

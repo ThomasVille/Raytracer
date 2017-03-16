@@ -1,7 +1,6 @@
 #pragma once
 #include "Vec3.h"
 #include "PhysicalObject.h"
-#include "Material.h"
 namespace RT
 {
 	class Sphere : public PhysicalObject

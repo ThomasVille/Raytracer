@@ -36,20 +36,21 @@ int main(int argc, char **argv)
 	RT::Scene scene;
 	RT::Renderer renderer(window);
 	RT::Camera cam(RT::Vec3(0, 0, 0), RT::Vec3(0, 0, 1), 50, 70, 100.0f/100.0f);
-	RT::Material white(RT::COLOR::WHITE), yellow(RT::COLOR::YELLOW), pink(RT::COLOR::PINK);
+	RT::Material white(RT::COLOR::WHITE, 1.0f, 0.5f, 0.5f, 0.0f, 10.0f), yellow(RT::COLOR::YELLOW, 1.0f, 0.5f, 0.5f, 0.0f, 10.0f), pink(RT::COLOR::PINK, 0.0f, 0.0f, 0.0f, 1.0f, 10.0f);
 
 	std::shared_ptr<RT::PointLight> ptL = std::make_shared<RT::PointLight>(RT::Vec3(-5, 5, 0), 10.0f);
 	//std::shared_ptr<RT::DirectionalLight> drL = std::make_shared<RT::DirectionalLight>(1.0f, RT::Vec3(0, 1, 0));
 
 	scene.SetBackground(RT::Color(77,100,141));
+	scene.SetAmbientLightIntensity(0.0f);
 	scene.SetCamera(cam);
 
 	scene.AddLight(ptL);
-	scene.AddLight(std::make_shared<RT::PointLight>(RT::Vec3(5, 0, 10), 2.0f));
+	scene.AddLight(std::make_shared<RT::PointLight>(RT::Vec3(5, 0, 10), 4.0f));
 	//scene.AddLight(drL);
 
 	scene.AddObject(std::make_shared<RT::Sphere>(RT::Vec3(0, 0, 10), yellow, 1.0f));
-	scene.AddObject(std::make_shared<RT::Sphere>(RT::Vec3(0.5, 0, 9), pink, 0.5f));
+	//scene.AddObject(std::make_shared<RT::Sphere>(RT::Vec3(0.5, 0, 9), pink, 0.5f));
 	scene.AddObject(std::make_shared<RT::Sphere>(RT::Vec3(-2, 2, 10), white, 3.0f));
 	
 

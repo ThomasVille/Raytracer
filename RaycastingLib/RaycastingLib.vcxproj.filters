@@ -60,6 +60,12 @@
     <ClInclude Include="PointLight.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Raycast.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vec3.cpp">
@@ -102,6 +108,12 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="PointLight.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Raycast.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -14,6 +14,8 @@ namespace RT
 	public:
 		// Couleur du fond de l'image
 		Color bgColor;
+		// Intensité de la lumière ambiante
+		float ambientLightIntensity;
 		// Liste d'objets physiques
 		std::vector< std::shared_ptr<PhysicalObject> > objects;
 		std::vector< std::shared_ptr<Light> > lights;
@@ -29,9 +31,14 @@ namespace RT
 		/** Ajoute une source lumineuse à la scène */
 		void AddLight(std::shared_ptr<Light> light);
 
+		/** Définie la caméra de la scène */
 		void SetCamera(Camera cam);
 
+		/** Définie la couleur du fond */
 		void SetBackground(Color c);
+
+		/** Définie l'intensité de l'illumination globale */
+		void SetAmbientLightIntensity(float i);
 	};
 }
 

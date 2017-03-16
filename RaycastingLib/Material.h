@@ -7,10 +7,15 @@ namespace RT
 	{
 	public:
 		Material();
-		Material(Color color);
+		Material(Color color, float ambientCoefficient, float diffuseCoefficient, float specularCoefficient, float reflectionCoefficient, float shininessCoefficient);
 		~Material();
 
 		Color color;
+		float ambientCoefficient;
+		float diffuseCoefficient;
+		float specularCoefficient;
+		float reflectionCoefficient;
+		float shininessCoefficient;
 	};
 }
 

@@ -25,5 +25,9 @@ namespace RT
 	{
 		bgColor = c;
 	}
+	void Scene::SetAmbientLightIntensity(float i)
+	{
+		ambientLightIntensity = i;
+	}
 }
 
