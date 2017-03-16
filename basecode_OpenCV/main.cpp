@@ -25,11 +25,8 @@
 #include "../RaycastingLib/Sphere.h"
 #include "../RaycastingLib/PointLight.h"
 #include "../RaycastingLib/DirectionalLight.h"
-#include "../RaycastingLib/GlobalLight.h"
 #include "main.h"
 using namespace std;
-
-
 
 int main(int argc, char **argv)
 {
@@ -42,13 +39,12 @@ int main(int argc, char **argv)
 	RT::Material white(RT::COLOR::WHITE), yellow(RT::COLOR::YELLOW), pink(RT::COLOR::PINK);
 
 	std::shared_ptr<RT::PointLight> ptL = std::make_shared<RT::PointLight>(RT::Vec3(-5, 5, 0), 10.0f);
-	std::shared_ptr<RT::GlobalLight> glL = std::make_shared<RT::GlobalLight>(1.0f);
 	//std::shared_ptr<RT::DirectionalLight> drL = std::make_shared<RT::DirectionalLight>(1.0f, RT::Vec3(0, 1, 0));
+
 	scene.SetBackground(RT::Color(77,100,141));
 	scene.SetCamera(cam);
 
 	scene.AddLight(ptL);
-	scene.AddLight(glL);
 	scene.AddLight(std::make_shared<RT::PointLight>(RT::Vec3(5, 0, 10), 2.0f));
 	//scene.AddLight(drL);
 
