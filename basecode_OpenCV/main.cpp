@@ -25,6 +25,7 @@
 #include "../RaycastingLib/Sphere.h"
 #include "../RaycastingLib/PointLight.h"
 #include "../RaycastingLib/DirectionalLight.h"
+#include "../RaycastingLib/GlobalLight.h"
 #include "main.h"
 using namespace std;
 
@@ -40,21 +41,33 @@ int main(int argc, char **argv)
 	RT::Camera cam(RT::Vec3(0, 0, 0), RT::Vec3(0, 0, 1), 50, 70, 100.0f/100.0f);
 	RT::Material white(RT::COLOR::WHITE), yellow(RT::COLOR::YELLOW), pink(RT::COLOR::PINK);
 
-	std::shared_ptr<RT::PointLight> ptL = std::make_shared<RT::PointLight>(RT::Vec3(0, 10, 8), 2.0f);
+	std::shared_ptr<RT::PointLight> ptL = std::make_shared<RT::PointLight>(RT::Vec3(-5, 5, 0), 10.0f);
+	std::shared_ptr<RT::GlobalLight> glL = std::make_shared<RT::GlobalLight>(1.0f);
+	//std::shared_ptr<RT::DirectionalLight> drL = std::make_shared<RT::DirectionalLight>(1.0f, RT::Vec3(0, 1, 0));
 	scene.SetBackground(RT::Color(77,100,141));
 	scene.SetCamera(cam);
 
 	scene.AddLight(ptL);
-	scene.AddLight(std::make_shared<RT::DirectionalLight>(1.0f, RT::Vec3(0,-1,0))); // Ne fonctionne pas
+	scene.AddLight(glL);
+	scene.AddLight(std::make_shared<RT::PointLight>(RT::Vec3(5, 0, 10), 2.0f));
+	//scene.AddLight(drL);
 
 	scene.AddObject(std::make_shared<RT::Sphere>(RT::Vec3(0, 0, 10), yellow, 1.0f));
 	scene.AddObject(std::make_shared<RT::Sphere>(RT::Vec3(0.5, 0, 9), pink, 0.5f));
 	scene.AddObject(std::make_shared<RT::Sphere>(RT::Vec3(-2, 2, 10), white, 3.0f));
 	
 
+	// Rend la scène
 	renderer.render(scene);
+	// Dessine des infos
+	cv::rectangle(window, cv::Rect(0, 0, 500, 30), cv::Scalar(255, 255, 255));
+	cv::putText(window, "Image : 0", cv::Point(3,18), cv::HersheyFonts::FONT_HERSHEY_PLAIN, 1.0f, cv::Scalar(255,255,255));
+	// Affiche l'image
 	cv::imshow("Window", window);
 	cv::waitKey();
+
+	// Sauvegarde l'image
+	cv::imwrite("output.png", window);
 
 	return EXIT_SUCCESS;
 }

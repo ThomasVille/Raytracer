@@ -3,11 +3,12 @@
 
 namespace RT
 {
-	class DirectionalLight : public Light
+	class GlobalLight :
+		public Light
 	{
 	public:
-		DirectionalLight(float intensity, Vec3 direction);
-		~DirectionalLight();
+		GlobalLight(float intensity);
+		~GlobalLight();
 
 		/** Renvoie l'atténuation de la lumière en fonction de la position du point à éclairer.
 		*/
@@ -16,8 +17,7 @@ namespace RT
 		/** La lumière est toujours à une distance de 1 du point éclairé
 		*/
 		virtual Vec3 GetPosition(Vec3 point, Vec3 normale);
-		Vec3 direction;
 	};
 
-
 }
+

@@ -62,19 +62,17 @@ namespace RT
 		Vec3 V = direction * -1.0f;
 		Vec3 N = nearestIntersection.target->GetNormale(nearestIntersection.position);
 
-		float ka = 0.5f;
-		float Ia = 1.0f;
 		float kd = 0.5f;
 		float Id = 0.0f;
 
 		for (int i = 0; i < scene.lights.size(); i++)
 		{
-			Vec3 L = (scene.lights[i]->position - nearestIntersection.position).Normalized();
+			Vec3 L = (scene.lights[i]->GetPosition(nearestIntersection.position, N) - nearestIntersection.position).Normalized();
 			Vec3 R = L.Reflected(N);
 			Id += N.prodScal(L)*scene.lights[i]->intensity*scene.lights[i]->GetAttenuation(nearestIntersection.position, N);
 		}
 
-		float I = ka*Ia + kd*Id;
+		float I = kd*Id;
 
 		return I*nearestIntersection.target->material.color;
 	}
